@@ -6,8 +6,11 @@ export default class Frame extends Component{
     render(){
         return(
             <div className="frame">
-                <a href="#">主页</a>
-                <a href="#play">游玩</a>
+                <div style={{position:'fixed',top:0}}>
+                    <a href="#">主页</a>
+                    <a href="#play">游玩</a>
+                </div>
+                <div style={{height:40}}></div>
                 <section className="container">
                     {this.props.children}
                 </section>

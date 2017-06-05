@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux-immutable'
 import counter from './counterRecucer'
 
 //使用redux的combineReducers方法将所有reducer打包起来

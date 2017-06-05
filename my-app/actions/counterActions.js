@@ -3,27 +3,32 @@ export const DECREMENT_COUNTER = 'DECREMENT_COUNTER'
 export const FETCH_DATA = 'FETCH_DATA'
 //导出加一的方法
 export function increment() {
-  return {
-    type: INCREMENT_COUNTER,
-    payLoad:{
-      name:'ricky'
-    }
+  return (dispatch, getState) => {
+    dispatch({
+      type: INCREMENT_COUNTER,
+      payLoad:{
+        counter:getState().get('counter').counter+1
+      }
+    })
   }
+  
 }
 //导出减一的方法
 export function decrement() {
-  return {
-    type: DECREMENT_COUNTER,
-    payLoad:{
-      name:'ricky111'
-    }
+  return (dispatch, getState) => {
+    dispatch({
+      type: DECREMENT_COUNTER,
+      payLoad:{
+        counter:getState().get('counter').counter-1
+      }
+    })
   }
 }
 //导出奇数加一的方法，该方法返回一个方法，包含dispatch和getState两个参数，dispatch用于执行action的方法，getState返回state
 export function incrementIfOdd() {
   return (dispatch, getState) => {
     //获取state对象中的counter属性值
-    const { counter } = getState();
+    const { counter } = getState().get('counter')
     console.log(counter);
     //偶数则返回
     if (counter % 2 === 0) {
@@ -44,8 +49,31 @@ export function incrementAsync(delay = 1000) {
 
 //请求数据
 export function fetchData(){
-  return{
-    type:FETCH_DATA
-  }
+   return (dispatch, getState) => {
+     fetchData1('/alpha/api/app/index/mall/query',{'isRecommend':true,'onSale':true,'size':10}).then(res=>res.json()).then(res=>{
+       console.log(res);
+       dispatch({
+          type:FETCH_DATA,
+          payLoad:{
+            counter:getState().get('counter').counter+5,
+            imgarr:res.content
+          }
+      })
+     })
+      
+   }
 }
 //这些方法都导出,在其他文件导入时候,使用import * as actions 就可以生成一个actions对象包含所有的export
+
+function fetchData1(url,body){
+  let option = {
+      'method':'POST',
+      'headers':{
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      'credentials':'include'
+    };
+    option = Object.assign({},option, {'body':JSON.stringify(body)});
+    return fetch(url,option)
+}

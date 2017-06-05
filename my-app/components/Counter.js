@@ -1,9 +1,15 @@
 import React, { Component} from 'react'
 // import PropTypes from 'prop-types';
 class Counter extends Component {
+  constructor(props){
+    super(props)
+  }
   render() {
     //从组件的props属性中导入四个方法和一个变量
-    const { increment, incrementIfOdd, incrementAsync, decrement, counter ,fetchData,indexData} = this.props;
+    const { 
+      increment, incrementIfOdd, incrementAsync, decrement, counter ,fetchData,indexData,
+      imgarr
+    } = this.props;
     // PropTypes.checkPropTypes(myPropTypes,{
     //   increment:increment,
     //   incrementIfOdd:incrementIfOdd,
@@ -12,8 +18,9 @@ class Counter extends Component {
     //   counter:counter
     // },'prop','Counter')
     //渲染组件，包括一个数字，四个按钮
+    console.log(counter)
     return (
-      <p>
+      <div>
         Clicked: {counter} times
         {' '}
         <button onClick={increment}>+</button>
@@ -23,9 +30,14 @@ class Counter extends Component {
         <button onClick={incrementIfOdd}>Increment if odd</button>
         {' '}
         <button onClick={() => incrementAsync()}>Increment async</button>
-        <button onClick={fetchData}>请求首页</button>
+        <button onClick={fetchData}>请求首页的数据</button>
         <div>首页数据:{indexData}</div>
-      </p>
+        <div style={{backgroundColor:'#fff',width:'100%'}}>
+          {imgarr.map((item,index)=>
+            <img src={item.imgurl} style={{width:'100%',height:200}} alt=""/>
+          )}
+        </div>
+      </div>
     )
   }
 }

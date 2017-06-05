@@ -1,37 +1,30 @@
 import { INCREMENT_COUNTER, DECREMENT_COUNTER,FETCH_DATA } from '../actions/counterActions'
-
+import {fromJS} from 'immutable';
 //reducer其实也是个方法而已,参数是state和action,返回值是新的state
 let initialState={
-  counter:0
+  name:'huangyunqi',
+  counter:10,
+  imgarr:[]
 }
-export default function counter(state =10, action) {
-    console.log(action);
-    console.log(state);
+export default function counter(state =initialState, action) {
   switch (action.type) {
     case INCREMENT_COUNTER:
-      return state+1
+      return {
+        ...state,
+        counter:action.payLoad.counter
+      }
     case DECREMENT_COUNTER:
-      return state - 1
+      return {
+        ...state,
+        counter:action.payLoad.counter
+      }
     case FETCH_DATA:
-      return fetchData('/alpha/api/app/index/mall/query',{'isRecommend':true,'onSale':true,'size':10},state)
+      return {
+        ...state,
+        counter:action.payLoad.counter,
+        imgarr:action.payLoad.imgarr
+      }
     default:
       return state
   }
-}
-function fetchData(url,body,state){
-  let option = {
-      'method':'POST',
-      'headers':{
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      'credentials':'include'
-    };
-    option = Object.assign({},option, {'body':JSON.stringify(body)});
-    fetch(url,option).then(res=>res.json()).then((res)=>{
-      return {
-        ...state,
-        name:'jack'
-      }
-    })
 }

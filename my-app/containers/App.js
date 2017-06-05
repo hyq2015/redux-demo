@@ -5,9 +5,10 @@ import * as CounterActions from '../actions/counterActions'
 
 //将state.counter绑定到props的counter
 function mapStateToProps(state) {
-  console.log(state)
+  console.log(state.get('counter'))
   return {
-    counter: state.counter
+    counter:state.get('counter').counter,
+    imgarr:state.get('counter').imgarr
   }
 }
 //将action的所有方法绑定到props上

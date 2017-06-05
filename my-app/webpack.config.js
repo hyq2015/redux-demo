@@ -5,7 +5,7 @@ module.exports = {
   devtool: 'eval',
   entry: [
     'webpack-dev-server/client?http://192.168.31.204:' + 3000,
-    'webpack-hot-middleware/client',
+    'webpack/hot/only-dev-server',
     './index'
   ],
   output: {
@@ -35,7 +35,7 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loaders: [ 'babel' ],
+        loader: 'react-hot!babel',
         exclude: /node_modules/,
         include: __dirname
       }

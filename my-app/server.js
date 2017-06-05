@@ -4,7 +4,7 @@ var webpackDevMiddleware = require('webpack-dev-middleware')
 const WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config')
 
-var app = new (require('express'))()
+// var app = new (require('express'))()
 var port = 3000
 
 var compiler = webpack(config)

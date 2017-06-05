@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import configureStore from './store/configureStore'
 import {syncHistoryWithStore} from 'react-router-redux';
 import Routes from './routes/index';
-import DevTool from './containers/DevTool';
+// import DevTool from './containers/DevTool';
 const store = configureStore();
 // console.log(store);
 // const history=syncHistoryWithStore(hashHistory,store);
@@ -20,7 +20,7 @@ render((
   <Provider store={store}>
     <div>
       <Routes/>
-      <DevTool/>
+      {/*<DevTool/>*/}
     </div>
   </Provider>
 ),document.getElementById('root'))
