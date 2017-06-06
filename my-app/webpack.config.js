@@ -7,6 +7,7 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://192.168.31.204:' + 3000,
     'webpack/hot/only-dev-server',
+    'babel-polyfill',
     './index'
   ],
   output: {
@@ -15,9 +16,11 @@ module.exports = {
     publicPath: '/'
   },
   devServer: {
-    noInfo: false,
+    noInfo: true,
     historyApiFallback: true,
     hot: true,
+    progress: true,
+    inline: true,
     publicPath: '/',
     proxy: {
         '/alpha/api/': {
@@ -41,7 +44,14 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'react-hot!babel',
+        loaders: [
+          'react-hot', 'babel?' +JSON.stringify({
+            plugins: [
+              'transform-runtime'
+            ],
+            presets: ['es2015', 'react', 'stage-0'],
+          })
+        ],
         exclude: /node_modules/,
         include: __dirname
       }

@@ -1,7 +1,4 @@
 import React,{Component} from 'react';
-import  createHistory  from 'history/createBrowserHistory'
-
-const history = createHistory()
 import {
   Link
 } from 'react-router-dom'
