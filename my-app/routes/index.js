@@ -9,17 +9,18 @@ import {
   Route,
   Link,
   IndexRoute,
-  hashHistory
+  hashHistory,
+  browserHistory
 } from 'react-router-dom'
 const Routes=()=>{
     return(
-        <HashRouter history={hashHistory}>
+        <Router history={browserHistory}>
             <Frame>
                 <Route path="/main"  component={App}/>
                 <Route path="/play" component={Play}></Route>
             </Frame>
             
-        </HashRouter>
+        </Router>
     )
 }
 /*const Routes=(
