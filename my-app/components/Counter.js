@@ -5,6 +5,7 @@ class Counter extends Component {
     super(props)
   }
   render() {
+    console.log(this.props)
     //从组件的props属性中导入四个方法和一个变量
     const { 
       increment, incrementIfOdd, incrementAsync, decrement, counter ,fetchData,indexData,
@@ -18,7 +19,6 @@ class Counter extends Component {
     //   counter:counter
     // },'prop','Counter')
     //渲染组件，包括一个数字，四个按钮
-    console.log(counter)
     return (
       <div>
         Clicked: {counter} times
@@ -33,9 +33,9 @@ class Counter extends Component {
         <button onClick={fetchData}>请求首页的数据</button>
         <div>首页数据:{indexData}</div>
         <div style={{backgroundColor:'#fff',width:'100%'}}>
-          {imgarr.map((item,index)=>
-            <img src={item.imgurl} style={{width:'100%',height:200}} alt=""/>
-          )}
+          {imgarr ? imgarr.map((item,index)=>
+            <img key={index} src={item.imgurl} style={{width:'100%',height:200}} alt=""/>
+          ) : null}
         </div>
       </div>
     )

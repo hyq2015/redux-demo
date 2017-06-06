@@ -1,6 +1,6 @@
 import React ,{Component} from 'react';
 import {render} from 'react-dom';
-import { hashHistory } from 'react-router';
+import { hashHistory ,browserHistory } from 'react-router';
 import { Provider } from 'react-redux'
 import configureStore from './store/configureStore'
 import {syncHistoryWithStore} from 'react-router-redux';
@@ -11,6 +11,7 @@ const store = configureStore();
 // const history=syncHistoryWithStore(hashHistory,store);
 import Frame from './containers/Frame';
 import App from './containers/App';
+// const history=syncHistoryWithStore(hashHistory,store)
 /*render((
   <Provider store={store}>
     {routes(history)}
@@ -19,7 +20,7 @@ import App from './containers/App';
 render((
   <Provider store={store}>
     <div>
-      <Routes/>
+      {Routes()}
       {/*<DevTool/>*/}
     </div>
   </Provider>
