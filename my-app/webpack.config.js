@@ -20,7 +20,7 @@ module.exports = {
     historyApiFallback: true,
     hot: true,
     progress: true,
-    inline: true,
+    inline: false,
     publicPath: '/',
     proxy: {
         '/alpha/api/': {

@@ -10,14 +10,20 @@ import {
   Link,
   IndexRoute,
   hashHistory,
-  browserHistory
+  browserHistory,
+  Redirect,
+  Switch
 } from 'react-router-dom'
 const Routes=()=>{
     return(
         <Router history={browserHistory}>
             <Frame>
-                <Route path="/main"  component={App}/>
-                <Route path="/play" component={Play}></Route>
+                <Switch>
+                    <Route path="/" exact component={App}/>
+                    <Route path="/main"  component={App}/>
+                    <Route path="/play" component={Play}></Route>
+                </Switch>
+                
             </Frame>
             
         </Router>

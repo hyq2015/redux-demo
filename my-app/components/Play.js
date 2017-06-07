@@ -2,6 +2,7 @@ import React ,{Component} from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as PlayActions from '../actions/playActions'
+import { withRouter } from 'react-router-dom'
  class Play extends Component{
     constructor(props){
         super(props)
@@ -33,4 +34,4 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(PlayActions, dispatch)
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Play)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Play))
