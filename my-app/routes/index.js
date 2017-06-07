@@ -16,7 +16,7 @@ import {
 } from 'react-router-dom'
 const Routes=()=>{
     return(
-        <Router history={browserHistory}>
+        // <Router history={browserHistory}>
             <Frame>
                 <Switch>
                     <Route path="/" exact component={App}/>
@@ -26,17 +26,10 @@ const Routes=()=>{
                 
             </Frame>
             
-        </Router>
+        // </Router>
     )
 }
-/*const Routes=(
-        <Router history={hashHistory}>
-            <Route path="/" component={Frame}>
-                <IndexRoute component={App}/>
-                <Route path="play" component={Play}></Route>
-            </Route>
-        </Router>
-    )*/
+
 
 export default Routes
 

@@ -5,7 +5,8 @@ import {routerReducer } from 'react-router-redux';
 //使用redux的combineReducers方法将所有reducer打包起来
 const rootReducer = combineReducers({
   counter,
-  play
+  play,
+  router: routerReducer
 })
 // const rootReducer = combineReducers({counter:counter,play:play,routing:routerReducer})
 

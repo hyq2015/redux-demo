@@ -1,27 +1,25 @@
 import React ,{Component} from 'react';
 import {render} from 'react-dom';
-import { hashHistory ,browserHistory } from 'react-router';
 import { Provider } from 'react-redux'
 import configureStore from './store/configureStore'
-import {syncHistoryWithStore} from 'react-router-redux';
+import { ConnectedRouter } from 'react-router-redux'
+import createHistory from 'history/createBrowserHistory'
 import Routes from './routes/index';
 // import DevTool from './containers/DevTool';
 const store = configureStore();
+const history = createHistory()
 // console.log(store);
-// const history=syncHistoryWithStore(hashHistory,store);
 import Frame from './containers/Frame';
 import App from './containers/App';
-// const history=syncHistoryWithStore(hashHistory,store)
-/*render((
-  <Provider store={store}>
-    {routes(history)}
-  </Provider>
-),document.getElementById('root'))*/
+
 render((
   <Provider store={store}>
-    <div>
-      {Routes()}
-      {/*<DevTool/>*/}
-    </div>
+    { /* ConnectedRouter will use the store from Provider automatically */ }
+    <ConnectedRouter history={history}>
+      <div>
+          {Routes()}
+      </div>
+    </ConnectedRouter>
+    
   </Provider>
 ),document.getElementById('root'))

@@ -16,7 +16,7 @@ module.exports = {
     publicPath: '/'
   },
   devServer: {
-    noInfo: true,
+    noInfo: false,
     historyApiFallback: true,
     hot: true,
     progress: true,
