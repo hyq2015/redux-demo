@@ -1,11 +1,10 @@
-export const INCREMENT_COUNTER = 'INCREMENT_COUNTER'
-export const DECREMENT_COUNTER = 'DECREMENT_COUNTER'
-export const FETCH_DATA = 'FETCH_DATA'
+
+import types from '../src/js/actiontypes'
 //导出加一的方法
 export function increment() {
   return (dispatch, getState) => {
     dispatch({
-      type: INCREMENT_COUNTER,
+      type: types.INCREMENT_COUNTER,
       payLoad:{
         counter:getState().get('counter').counter+1
       }
@@ -17,7 +16,7 @@ export function increment() {
 export function decrement() {
   return (dispatch, getState) => {
     dispatch({
-      type: DECREMENT_COUNTER,
+      type: types.DECREMENT_COUNTER,
       payLoad:{
         counter:getState().get('counter').counter-1
       }
@@ -53,7 +52,7 @@ export function fetchData(){
      fetchData1('/alpha/api/app/index/mall/query',{'isRecommend':true,'onSale':true,'size':10}).then(res=>res.json()).then(res=>{
        console.log(res);
        dispatch({
-          type:FETCH_DATA,
+          type:types.FETCH_DATA_COUNTER,
           payLoad:{
             counter:getState().get('counter').counter+5,
             imgarr:res.content

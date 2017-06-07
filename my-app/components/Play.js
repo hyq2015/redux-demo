@@ -8,7 +8,7 @@ import { withRouter } from 'react-router-dom'
         super(props)
     }
     componentDidMount(){
-        console.log(this.props.location)
+        console.log(this.props)
     }
     render(){
         const {mallarr,fetchData} =this.props;

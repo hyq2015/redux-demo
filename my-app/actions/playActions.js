@@ -1,11 +1,11 @@
-export const FETCH_DATA = 'FETCH_DATA1'
+export const FETCH_DATA_PLAY = 'FETCH_DATA_PLAY'
 //请求数据
 export function fetchData(){
    return (dispatch, getState) => {
      fetchData1('/alpha/api/theme/sortQuery',{'page':1,'pageSize':10}).then(res=>res.json()).then(res=>{
        console.log(res);
        dispatch({
-          type:FETCH_DATA,
+          type:FETCH_DATA_PLAY,
           payLoad:{
             mallarr:res.content
           }

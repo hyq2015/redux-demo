@@ -19,9 +19,9 @@ const Routes=()=>{
         // <Router history={browserHistory}>
             <Frame>
                 <Switch>
-                    <Route path="/" exact component={App}/>
-                    <Route path="/main"  component={App}/>
-                    <Route path="/play" component={Play}></Route>
+                    <Route path="/" exact component={App} onEnter={()=>{console.log(222222)}}/>
+                    <Route path="/main" onEnter={()=>{console.log(222222)}} component={App}/>
+                    <Route path="/play" onEnter={()=>{console.log(222222)}} component={Play}></Route>
                 </Switch>
                 
             </Frame>
