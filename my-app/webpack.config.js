@@ -5,7 +5,7 @@ module.exports = {
   // devtool: 'eval',
   devtool: 'sourcemap',
   entry: [
-    'webpack-dev-server/client?http://192.168.31.204:' + 3000,
+    'webpack-dev-server/client?http://192.168.1.5:' + 3000,
     'webpack/hot/only-dev-server',
     'babel-polyfill',
     './index'
@@ -31,11 +31,11 @@ module.exports = {
     }
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': '"production"'
-      }
-    }),
+    // new webpack.DefinePlugin({
+    //   'process.env': {
+    //     'NODE_ENV': '"production"'
+    //   }
+    // }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
