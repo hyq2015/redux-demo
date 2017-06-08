@@ -1,5 +1,6 @@
 
 import types from '../src/js/actiontypes'
+import { push } from 'react-router-redux';
 //导出加一的方法
 export function increment() {
   return (dispatch, getState) => {
@@ -49,6 +50,7 @@ export function incrementAsync(delay = 1000) {
 //请求数据
 export function fetchData(){
    return (dispatch, getState) => {
+    //  dispatch(push('play'))
      fetchData1('/alpha/api/app/index/mall/query',{'isRecommend':true,'onSale':true,'size':10}).then(res=>res.json()).then(res=>{
        console.log(res);
        dispatch({

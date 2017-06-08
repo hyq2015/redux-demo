@@ -1,12 +1,12 @@
 import React, { Component} from 'react'
 import { createStore, applyMiddleware,compose } from 'redux';
+import { routerMiddleware } from 'react-router-redux'
 import 'core-js/fn/object/assign';
 import 'babel-polyfill';
 import thunk from 'redux-thunk';
 import rootReducer from '../reducers/index';
 import {createLogger} from 'redux-logger';
 import promiseMiddleware from 'redux-promise';
-import { routerMiddleware } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory'
 // import DevTools from '../containers/DevTool';
 import {fromJS} from 'immutable'

@@ -1,10 +1,14 @@
 import React, { Component} from 'react'
+import { push } from 'react-router-redux';
 // import PropTypes from 'prop-types';
 class Counter extends Component {
   constructor(props){
     super(props)
+    this.goPlay=this.goPlay.bind(this);
   }
-
+  goPlay(){
+    this.props.history.push('/play')
+  }
   render() {
     console.log(this.props)
     //从组件的props属性中导入四个方法和一个变量
@@ -27,7 +31,7 @@ class Counter extends Component {
         <button onClick={() => incrementAsync()}>Increment async</button>
         <button onClick={fetchData}>请求首页的数据</button>
         <div>首页数据:{indexData}</div>
-        <button style={{marginLeft:20}} onClick={()=>history.push('/play')}>点击跳转到游玩页面</button>
+        <button style={{marginLeft:20}} onClick={this.goPlay}>点击跳转到游玩页面</button>
         <div style={{backgroundColor:'#fff',width:'100%'}}>
           {imgarr ? imgarr.map((item,index)=>
             <img key={index} src={item.imgurl} style={{width:'100%',height:200}} alt=""/>
