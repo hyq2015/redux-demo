@@ -1,11 +1,12 @@
 var path = require('path')
 var webpack = require('webpack')
-
+// let proxy='http://42.159.244.26'
+let proxy='http://139.219.189.2'
 module.exports = {
   // devtool: 'eval',
   devtool: 'sourcemap',
   entry: [
-    'webpack-dev-server/client?http://192.168.1.5:' + 3000,
+    'webpack-dev-server/client?http://192.168.31.204:' + 3000,
     'webpack/hot/only-dev-server',
     'babel-polyfill',
     './index'
@@ -24,7 +25,7 @@ module.exports = {
     publicPath: '/',
     proxy: {
         '/alpha/api/': {
-            target: 'http://42.159.244.26',
+            target: proxy,
             changeOrigin: true,
             pathRewrite: {'^/alpha/api/' : '/alpha/api/'},
           }
@@ -54,6 +55,18 @@ module.exports = {
         ],
         exclude: /node_modules/,
         include: __dirname
+      },
+      {
+        test: /\.less/,
+        loader: 'style-loader!css-loader!less-loader'
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
+      },
+      {
+        test: /\.(woff|woff2|ttf)\??.*$/,
+        loader: 'url-loader?name=fonts/[name].[md5:hash:hex:7].[ext]'
       }
     ]
   },

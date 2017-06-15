@@ -6,11 +6,16 @@ class Counter extends Component {
     super(props)
     this.goPlay=this.goPlay.bind(this);
   }
+  componentDidMount(){
+    if(this.props.imgarr.length<1){
+      this.props.fetchData()
+    }
+  }
   goPlay(){
     this.props.history.push('/play')
   }
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     //从组件的props属性中导入四个方法和一个变量
     const { 
       increment, incrementIfOdd, incrementAsync, decrement, counter ,fetchData,indexData,
