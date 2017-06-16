@@ -2,7 +2,6 @@ import React, { Component} from 'react'
 import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import Counter from '../components/Counter'
 import * as WelfareActions from '../actions/welfareActions'
 import * as frameActions from '../actions/frameActions'
 import { withRouter } from 'react-router-dom'
@@ -43,7 +42,6 @@ class Welfare extends Component {
     // console.log(this.props)
     //从组件的props属性中导入四个方法和一个变量
     const { 
-      increment, incrementIfOdd, incrementAsync, decrement, counter ,fetchData,indexData,
       imgarr,history
     } = this.props;
    

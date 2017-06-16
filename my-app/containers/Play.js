@@ -5,16 +5,26 @@ import * as PlayActions from '../actions/playActions'
 import * as frameActions from '../actions/frameActions'
 import { withRouter } from 'react-router-dom'
 import SCROLL_POSITION from '../src/js/catcheState'
+
+import '../src/styles/play.less'
+import SinglePlaycard from '../components/SinglePlaycard'
+import Rscroller from '../components/Rscroller'
+
  class Play extends Component{
     constructor(props){
         super(props)
+        this.state={
+            loading:false,
+            loadMore:true
+        }
+        this.loadMoreData=this.loadMoreData.bind(this)
     }
     componentWillMount(){
         document.title='游玩'
     }
     componentDidMount(){
-        if(this.props.mallarr.length<1){
-            this.props.play.fetchData()
+        if(this.props.theme.content.length<1){
+            this.props.play.fetchData({'page':1,'pageSize':5})
         }
         if(this.props.dataLoaded){
            
@@ -31,15 +41,40 @@ import SCROLL_POSITION from '../src/js/catcheState'
     componentWillUnmount(){
         SCROLL_POSITION.addCatche(this.props.location.pathname,document.body.scrollTop)
     }
+    loadMoreData(){
+        if(!this.props.theme.last){
+            this.props.play.noticeLoading(true)
+            this.props.play.fetchData({'page':(this.props.theme.content.length/5)+1,'pageSize':5})
+        }else{
+            this.setState({
+                loading:false,
+                loadMore:false
+            })
+        }
+        
+    }
     render(){
-        const {mallarr} =this.props;
+        const {theme} =this.props;
         return(
-            <div>
-                <div>
-                    {mallarr && mallarr.length>0 ? mallarr.map((item,index)=>
-                        <img key={index} src={item.imgurl} style={{width:'100%',height:200}} alt=""/>
+            <div id="playContainer">
+                <Rscroller
+                    loadMore={this.props.theme.last ? false : true}
+                    loading={this.props.loading}
+                    loadMoreData={this.loadMoreData}
+                >
+                    {theme && theme.content.length>0 ? theme.content.map((item,index)=>
+                        <SinglePlaycard
+                            cardIndex={index}
+                            key={item.id}
+                            idIndex={item.id}
+                            imgarr={item.imageDtos.slice(0,4)}
+                            title={item.name ? item.name : '跟我耍'}
+                            desc={item.simpleDesc ? item.simpleDesc : '跟我耍'}
+                            toTheme={()=>{}}
+                        />
                     ) : null}
-                </div>
+                </Rscroller>
+                
             </div>
         )
     }

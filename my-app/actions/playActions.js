@@ -2,15 +2,15 @@ export const FETCH_DATA_PLAY = 'FETCH_DATA_PLAY'
 import types from '../src/js/actiontypes'
 import XHR from '../src/js/XHR'
 //请求数据
-export function fetchData(){
+export function fetchData(jsondata){
    return (dispatch, getState) => {
-     XHR('getTheme',{'page':1,'pageSize':10})
+     XHR('getTheme',jsondata)
       .then(res=>{
         console.log(res)
           dispatch({
               type:types.FETCH_DATA_PLAY,
               payLoad:{
-                mallarr:res.content
+                theme:res
               }
           })
         })
@@ -18,4 +18,14 @@ export function fetchData(){
         console.log(err)
       })
    }
+}
+export function noticeLoading(loadingStatus){
+  return (dispatch, getState)=>{
+    dispatch({
+        type:types.PLAY_LOADING_STATUS,
+        payLoad:{
+          loading:loadingStatus
+        }
+    })
+  }
 }

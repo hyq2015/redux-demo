@@ -11,7 +11,10 @@ class Mine extends Component{
     }
     componentDidMount(){
         // console.log(this.props)
-        this.props.frameActions.noticeTabbar(3,false)
+        this.props.frameActions.noticeTabbar(3,true)
+    }
+    componentWillUnmount(){
+        SCROLL_POSITION.addCatche(this.props.location.pathname,document.body.scrollTop)
     }
     render(){
         return(

@@ -3,6 +3,7 @@
         play page
      */
     FETCH_DATA_PLAY:'FETCH_DATA_PLAY',
+    PLAY_LOADING_STATUS:'PLAY_LOADING_STATUS',
     /*
         counter page
      */
