@@ -1,29 +1,21 @@
 export const FETCH_DATA_PLAY = 'FETCH_DATA_PLAY'
+import types from '../src/js/actiontypes'
+import XHR from '../src/js/XHR'
 //请求数据
 export function fetchData(){
    return (dispatch, getState) => {
-     fetchData1('/alpha/api/theme/sortQuery',{'page':1,'pageSize':10}).then(res=>res.json()).then(res=>{
-       console.log(res);
-       dispatch({
-          type:FETCH_DATA_PLAY,
-          payLoad:{
-            mallarr:res.content
-          }
+     XHR('getTheme',{'page':1,'pageSize':10})
+      .then(res=>{
+        console.log(res)
+          dispatch({
+              type:types.FETCH_DATA_PLAY,
+              payLoad:{
+                mallarr:res.content
+              }
+          })
+        })
+      .catch(err=>{
+        console.log(err)
       })
-     })
-      
    }
-}
-
-function fetchData1(url,body){
-  let option = {
-      'method':'POST',
-      'headers':{
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      'credentials':'include'
-    };
-    option = Object.assign({},option, {'body':JSON.stringify(body)});
-    return fetch(url,option)
 }

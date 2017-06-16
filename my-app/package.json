@@ -17,6 +17,7 @@
   },
   "homepage": "http://rackt.github.io/redux",
   "dependencies": {
+    "axios": "^0.16.2",
     "babel-core": "^6.0.0",
     "babel-loader": "^6.0.0",
     "babel-polyfill": "^6.23.0",

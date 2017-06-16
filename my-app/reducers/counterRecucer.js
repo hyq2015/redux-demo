@@ -3,7 +3,8 @@ import types from '../src/js/actiontypes'
 const initialState={
   name:'huangyunqi',
   counter:10,
-  imgarr:[]
+  imgarr:[],
+  dataLoaded:false
 }
 export default function counter(state =initialState, action) {
   switch (action.type) {
@@ -21,7 +22,8 @@ export default function counter(state =initialState, action) {
       return {
         ...state,
         counter:action.payLoad.counter,
-        imgarr:action.payLoad.imgarr
+        imgarr:action.payLoad.imgarr,
+        dataLoaded:true
       }
     default:
       return state

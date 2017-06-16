@@ -1,8 +1,14 @@
 import React, { Component} from 'react'
 import { push } from 'react-router-redux';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import Counter from '../components/Counter'
+import * as WelfareActions from '../actions/welfareActions'
+import * as frameActions from '../actions/frameActions'
+import { withRouter } from 'react-router-dom'
 import SCROLL_POSITION from '../src/js/catcheState'
 // import PropTypes from 'prop-types';
-class Counter extends Component {
+class Welfare extends Component {
   constructor(props){
     super(props)
     this.goPlay=this.goPlay.bind(this);
@@ -12,7 +18,7 @@ class Counter extends Component {
   }
   componentDidMount(){
     if(this.props.imgarr.length<1){
-      this.props.fetchData()
+      this.props.welfare.fetchData()
     }
     if(this.props.dataLoaded){
       console.log(this.props.location.pathname)
@@ -24,6 +30,7 @@ class Counter extends Component {
         window.scrollTo(0,0)
       }
     }
+    this.props.frame.noticeTabbar(2,true)
   }
   componentWillUnmount(){
     console.log(document.body.scrollTop)
@@ -43,18 +50,6 @@ class Counter extends Component {
     //渲染组件，包括一个数字，四个按钮
     return (
       <div>
-        {/*Clicked: {counter} times
-        {' '}
-        <button onClick={increment}>+</button>
-        {' '}
-        <button onClick={decrement}>-</button>
-        {' '}
-        <button onClick={incrementIfOdd}>Increment if odd</button>
-        {' '}
-        <button onClick={() => incrementAsync()}>Increment async</button>
-        <button onClick={fetchData}>请求首页的数据</button>
-        <div>首页数据:{indexData}</div>
-        <button style={{marginLeft:20}} onClick={this.goPlay}>点击跳转到游玩页面</button>*/}
         <div style={{backgroundColor:'#fff',width:'100%'}}>
           {imgarr ? imgarr.map((item,index)=>
             <img key={index} src={item.imgurl} style={{width:'100%',height:200}} alt=""/>
@@ -65,5 +60,17 @@ class Counter extends Component {
   }
 }
 
+//将state.counter绑定到props的counter
+function mapStateToProps(state) {
+  return state.get('welfare')
+}
+//将action的所有方法绑定到props上
+function mapDispatchToProps(dispatch) {
+  return{
+       welfare:bindActionCreators(WelfareActions, dispatch),
+       frame:bindActionCreators(frameActions, dispatch)
+  }
+}
 
-export default Counter
+//通过react-redux提供的connect方法将我们需要的state中的数据和actions中的方法绑定到props上
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Welfare))

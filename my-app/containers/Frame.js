@@ -1,28 +1,45 @@
 import React,{Component} from 'react';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as frameActions from '../actions/frameActions'
+import { withRouter } from 'react-router-dom'
 import {
   Link
 } from 'react-router-dom'
+import '../src/styles/app.less'
 import Tabbar from '../components/Tabbar'
-export default class Frame extends Component{
+
+
+class Frame extends Component{
     constructor(props){
         super(props)
     }
-    
+    componentDidMount(){
+        console.log(this.props)
+    }
     render(){
+        const {activebar,tabshow,noticeTabbar}=this.props;
         return(
             <div className="frame">
-                <div style={{position:'fixed',top:0}}>
-                    <Link to="main">主页</Link>
-                    <Link to="play" style={{marginLeft:20}}>游玩</Link>
-                     
-                </div>
-               
-                <div style={{height:40}}></div>
                 <section className="container">
                     {this.props.children}
                 </section>
-                <Tabbar/>
+                {tabshow ? 
+                    <Tabbar
+                        activetab={activebar}
+                        changeTab={(activeIndex)=>noticeTabbar(activeIndex,true)}
+                    /> : null
+                }
             </div>
         )
     }
 }
+//将state.counter绑定到props的counter
+function mapStateToProps(state) {
+  return state.get('frame')
+}
+//将action的所有方法绑定到props上
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(frameActions, dispatch)
+}
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Frame))

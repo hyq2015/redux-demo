@@ -9,8 +9,6 @@ import Routes from './routes/index';
 const store = configureStore();
 const history = createHistory()
 // console.log(store);
-import Frame from './containers/Frame';
-import App from './containers/App';
 
 render((
   <Provider store={store}>
