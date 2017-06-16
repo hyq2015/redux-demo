@@ -9,7 +9,7 @@ import SCROLL_POSITION from '../src/js/catcheState'
 import '../src/styles/play.less'
 import SinglePlaycard from '../components/SinglePlaycard'
 import Rscroller from '../components/Rscroller'
-
+let pageSize=2;
  class Play extends Component{
     constructor(props){
         super(props)
@@ -24,7 +24,7 @@ import Rscroller from '../components/Rscroller'
     }
     componentDidMount(){
         if(this.props.theme.content.length<1){
-            this.props.play.fetchData({'page':1,'pageSize':5})
+            this.props.play.fetchData({'page':1,'pageSize':pageSize})
         }
         if(this.props.dataLoaded){
            
@@ -44,12 +44,7 @@ import Rscroller from '../components/Rscroller'
     loadMoreData(){
         if(!this.props.theme.last){
             this.props.play.noticeLoading(true)
-            this.props.play.fetchData({'page':(this.props.theme.content.length/5)+1,'pageSize':5})
-        }else{
-            this.setState({
-                loading:false,
-                loadMore:false
-            })
+            this.props.play.fetchData({'page':(this.props.theme.content.length/pageSize)+1,'pageSize':pageSize})
         }
         
     }

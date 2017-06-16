@@ -23,11 +23,9 @@ export default class Rscroller extends Component{
     refreshScroll(){
         if(contentHeight!=this.refs.Rscroller.offsetHeight){
             contentHeight=this.refs.Rscroller.offsetHeight
-            console.log(contentHeight)
         }
-        if(document.body.scrollTop>contentHeight-window.innerHeight){
-            if(!loadingStatus){
-                loadingStatus=true;
+        if(document.body.scrollTop>contentHeight-window.innerHeight-50){
+            if(!this.props.loading){
                 this.props.loadMoreData()
             }
             
@@ -35,8 +33,6 @@ export default class Rscroller extends Component{
     }
     onScroll(){
         this.refreshScroll();
-        // console.log(document.body.scrollTop)
-        // console.log(this.refs.Rscroller.offsetHeight)
     }
     
     render(){
