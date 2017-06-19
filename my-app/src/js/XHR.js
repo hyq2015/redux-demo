@@ -13,6 +13,10 @@ export const URL={
     'getTheme':{
         'url':BASE_URL+'/api/theme/sortQuery',
         'method':'post'
+    },
+    getBannerIndexItem:{
+        url:BASE_URL+'/api/app/index/getBannerIndexItem',
+        method:'post'
     }
 
 }

@@ -7,8 +7,12 @@ import { withRouter } from 'react-router-dom'
 import SCROLL_POSITION from '../src/js/catcheState'
 
 import '../src/styles/play.less'
+import PlaySlider from '../components/PlaySlider';
 import SinglePlaycard from '../components/SinglePlaycard'
 import Rscroller from '../components/Rscroller'
+import Searchbar from '../components/Searchbar'
+let u = navigator.userAgent;
+let isIos=!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); 
 let pageSize=2;
  class Play extends Component{
     constructor(props){
@@ -18,6 +22,9 @@ let pageSize=2;
             loadMore:true
         }
         this.loadMoreData=this.loadMoreData.bind(this)
+        this.showarea=this.showarea.bind(this)
+        this.goSearch=this.goSearch.bind(this)
+        this.saveBannerSetting=this.saveBannerSetting.bind(this)
     }
     componentWillMount(){
         document.title='游玩'
@@ -25,6 +32,9 @@ let pageSize=2;
     componentDidMount(){
         if(this.props.theme.content.length<1){
             this.props.play.fetchData({'page':1,'pageSize':pageSize})
+        }
+        if(this.props.banner.content.length<1){
+            this.props.play.fetchBanner({'pageSize':7})
         }
         if(this.props.dataLoaded){
            
@@ -48,6 +58,15 @@ let pageSize=2;
         }
         
     }
+    showarea(){
+
+    }
+    goSearch(){
+
+    }
+    saveBannerSetting(bannersetting){
+        this.props.play.saveBannerSetting(bannersetting)
+    }
     render(){
         const {theme} =this.props;
         return(
@@ -57,6 +76,27 @@ let pageSize=2;
                     loading={this.props.loading}
                     loadMoreData={this.loadMoreData}
                 >
+                    {this.props.bannerImgs.length>0 ? 
+                        <PlaySlider
+                            bannerImgs={this.props.bannerImgs}
+                            reverseBannerImgs={this.props.reverseBannerImgs}
+                            currentActive={this.props.currentActive}
+                            currentActiveCircle={this.props.currentActiveCircle}
+                            reverseCurrentActive={this.props.reverseCurrentActive}
+                            leftOriention={true}
+                            saveBannerSetting={this.saveBannerSetting}
+                        >
+                        <div style={{position:'absolute',top:0,left:0,width:'100%',height:49}}>
+                            <Searchbar
+                                showarea={this.showarea}
+                                goSearch={this.goSearch}
+                                isIos={isIos}
+                            />
+                        </div>
+                        </PlaySlider> 
+                        : null
+                    }
+                    
                     {theme && theme.content.length>0 ? theme.content.map((item,index)=>
                         <SinglePlaycard
                             cardIndex={index}

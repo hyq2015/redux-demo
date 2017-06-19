@@ -5,7 +5,15 @@ const initialState1={
     loading:true,
     theme:{
         content:[]
-    }
+    },
+    banner:{
+      content:[]
+    },
+    bannerImgs:[],
+    reverseBannerImgs:[],
+    currentActive:0,
+    currentActiveCircle:0,
+    reverseCurrentActive:0
 }
 export default function play(state =initialState1, action) {
   switch (action.type) {
@@ -25,6 +33,28 @@ export default function play(state =initialState1, action) {
         ...state,
         loading:action.payLoad.loading
       }
+    case types.FETCH_BANNER_PLAY:
+      return{
+        ...state,
+        banner:action.payLoad.banner
+      }
+    case types.BANNER_HANDLED:
+      return{
+        ...state,
+        bannerImgs:action.payLoad.bannerImgs,
+        reverseBannerImgs:action.payLoad.reverseBannerImgs
+      }
+
+    case types.SAVE_BANNER:
+      return{
+        ...state,
+        bannerImgs:action.payLoad.setting.bannerImgs,
+        reverseBannerImgs:action.payLoad.setting.reverseBannerImgs,
+        currentActive:action.payLoad.setting.currentActive,
+        currentActiveCircle:action.payLoad.setting.currentActiveCircle,
+        reverseCurrentActive:action.payLoad.setting.reverseCurrentActive
+      }
+
     default:
       return state
   }
