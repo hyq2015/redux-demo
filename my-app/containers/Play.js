@@ -58,11 +58,11 @@ let pageSize=2;
         }
         
     }
-    showarea(){
-
+    showarea(e){
+        e.stopPropagation();
     }
-    goSearch(){
-
+    goSearch(e){
+        e.stopPropagation();
     }
     saveBannerSetting(bannersetting){
         this.props.play.saveBannerSetting(bannersetting)
@@ -86,10 +86,10 @@ let pageSize=2;
                             leftOriention={true}
                             saveBannerSetting={this.saveBannerSetting}
                         >
-                        <div style={{position:'absolute',top:0,left:0,width:'100%',height:49}}>
+                        <div style={{position:'absolute',top:0,left:0,width:'100%',height:49,zIndex:502}}>
                             <Searchbar
-                                showarea={this.showarea}
-                                goSearch={this.goSearch}
+                                showarea={(e)=>this.showarea(e)}
+                                goSearch={(e)=>this.goSearch(e)}
                                 isIos={isIos}
                             />
                         </div>
