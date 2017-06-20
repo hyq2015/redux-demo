@@ -6,7 +6,6 @@ export function fetchData(jsondata){
   return (dispatch, getState) => {
     XHR('getTheme',jsondata)
     .then(res=>{
-      console.log(res)
         dispatch({
             type:types.FETCH_DATA_PLAY,
             payLoad:{
@@ -99,8 +98,11 @@ export function handleBannerImgs(bannerarr){
 
   }
 }
+let obj={arr:[{name:1},{name:2}]}
 export function saveBannerSetting(setting){
   return(dispatch,getState)=>{
+    // console.log(getState().get('play'))
+    console.log({todos:[{name:'ricky'},...obj.arr]})
     dispatch({
       type:types.SAVE_BANNER,
       payLoad:{

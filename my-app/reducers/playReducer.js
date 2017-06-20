@@ -20,7 +20,8 @@ export default function play(state =initialState1, action) {
     
     case types.FETCH_DATA_PLAY:
       let newTheme=action.payLoad.theme;
-      newTheme.content=state.theme.content.concat(newTheme.content)
+      // newTheme.content=state.theme.content.concat(newTheme.content)
+      newTheme.content=[...state.theme.content,...newTheme.content]
       console.log(newTheme)
       return {
         ...state,
