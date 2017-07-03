@@ -1,7 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
-let proxy='http://42.159.244.26'
-// let proxy='http://139.219.189.2'
+// let proxy='http://42.159.244.26'
+let proxy='http://47.94.210.1';//dev
 module.exports = {
   // devtool: 'eval',
   devtool: 'sourcemap',

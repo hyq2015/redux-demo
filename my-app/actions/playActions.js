@@ -32,14 +32,19 @@ export function fetchBanner(jsondata){
   return (dispatch, getState) => {
     XHR('getBannerIndexItem',jsondata)
     .then(res=>{
-      console.log(res)
+      let finalRes={};
+      if(!res.content){
+        finalRes.content=res;
+      }else{
+        finalRes=res;
+      }
         dispatch({
             type:types.FETCH_BANNER_PLAY,
             payLoad:{
-              banner:res
+              banner:finalRes
             }
         })
-        dispatch(handleBannerImgs(res.content))
+        dispatch(handleBannerImgs(finalRes.content))
       })
     .catch(err=>{
       console.log(err)
